@@ -45,6 +45,8 @@ ENV \
   SCREEN_DIMENSION=1280x1024x24 \
   VNC_PASSWORD=password
 
+RUN echo "export DISPLAY=$DISPLAY" >> /etc/profile
+
 EXPOSE 4444 5900
 
 # Define entrypoint and command
