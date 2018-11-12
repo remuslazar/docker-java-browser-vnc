@@ -1,0 +1,2 @@
+#!/usr/bin/with-contenv /usr/bin/execlineb
+/bin/sh -c "/usr/bin/Xvfb $DISPLAY -ac -screen 0 $SCREEN_DIMENSION"
