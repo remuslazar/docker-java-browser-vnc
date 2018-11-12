@@ -32,7 +32,6 @@ ssh -p1122 alpine$(docker-machine ip $DOCKER_MACHINE_NAME)
 Then, inside the container, start e.g. firefox
 
 ```
-export DISPLAY=:99
 firefox
 ```
 
