@@ -21,7 +21,7 @@ RUN tar xzf /tmp/s6-overlay-amd64.tar.gz -C / && rm /tmp/s6-overlay-amd64.tar.gz
 	&& echo 'alpine ALL=(ALL) NOPASSWD: ALL' > /etc/sudoers.d/alpine
 
 # install jre, selenium, firefox and xvfb
-RUN apk --no-cache add openjdk8 xorg-server xvfb firefox-esr curl libvncserver openssl dbus
+RUN apk --no-cache add openjdk8 xorg-server xvfb ttf-opensans firefox-esr curl libvncserver openssl dbus
 
 # we do compile x11vnc from sources (unfortunately there is no binary package available..)
 RUN apk --no-cache add --virtual=.x11vncdeps gcc g++ automake autoconf make openssl-dev libx11-dev libvncserver-dev \
