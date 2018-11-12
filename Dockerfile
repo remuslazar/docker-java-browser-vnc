@@ -37,6 +37,9 @@ RUN apk --no-cache add --virtual=.x11vncdeps gcc g++ automake autoconf make open
 # Install Chromium
 # RUN apk add --no-cache chromium
 
+# Install IcedTea (Java Web Start Stuff)
+RUN apk add --no-cache icedtea-web
+
 ENV \
   DISPLAY=:99 \
   SCREEN_DIMENSION=1280x1024x24 \
