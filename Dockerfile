@@ -34,9 +34,12 @@ RUN apk --no-cache add --virtual=.x11vncdeps gcc g++ automake autoconf make open
   && apk del .x11vncdeps \
   && cd / && rm -rf /src
 
+# Install Chromium
+# RUN apk add --no-cache chromium
+
 ENV \
   DISPLAY=:99 \
-  SCREEN_DIMENSION=1600x1000x24 \
+  SCREEN_DIMENSION=1280x1024x24 \
   VNC_PASSWORD=password
 
 EXPOSE 4444 5900
