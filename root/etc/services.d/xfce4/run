@@ -1,0 +1,3 @@
+#!/usr/bin/execlineb -P
+foreground { s6-svwait -u /var/run/s6/services/xvfb }
+export DISPLAY :99 /bin/sh /etc/xdg/xfce4/xinitrc -- /etc/X11/xinit/xserverrc

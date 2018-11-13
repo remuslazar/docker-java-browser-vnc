@@ -4,14 +4,11 @@ MAINTAINER Remus Lazar <rl@cron.eu>
 
 ARG S6_VERSION="1.21.2.2"
 
-COPY root /
-
 ADD https://github.com/just-containers/s6-overlay/releases/download/v${S6_VERSION}/s6-overlay-amd64.tar.gz /tmp/
 
 RUN apk add --no-cache tar rsync curl sed bash git openssh pwgen sudo s6
 
 RUN tar xzf /tmp/s6-overlay-amd64.tar.gz -C / && rm /tmp/s6-overlay-amd64.tar.gz \
-	&& chmod +x /github-keys.sh \
 	&& sed -i -r 's/.?UseDNS\syes/UseDNS no/' /etc/ssh/sshd_config \
 	&& sed -i -r 's/.?PasswordAuthentication.+/PasswordAuthentication no/' /etc/ssh/sshd_config \
 	&& sed -i -r 's/.?ChallengeResponseAuthentication.+/ChallengeResponseAuthentication no/' /etc/ssh/sshd_config \
@@ -40,12 +37,18 @@ RUN apk --no-cache add --virtual=.x11vncdeps gcc g++ automake autoconf make open
 # Install IcedTea (Java Web Start Stuff)
 RUN apk add --no-cache icedtea-web
 
+# Install the Xfce window manager
+RUN apk add --no-cache xfce4
+
+COPY root /
+
 ENV \
   DISPLAY=:99 \
-  SCREEN_DIMENSION=1280x1024x24 \
+  SCREEN_DIMENSION=1024x768x24 \
   VNC_PASSWORD=password
 
-RUN echo "export DISPLAY=$DISPLAY" >> /etc/profile
+RUN echo "export DISPLAY=$DISPLAY" >> /etc/profile \
+	echo "export PATH=$PATH:/usr/lib/jvm/default-jvm/bin" >> /etc/profile
 
 EXPOSE 4444 5900
 

@@ -15,6 +15,8 @@ chmod 700 /root/.ssh
 PASS=$(pwgen -c -n -1 16)
 echo "alpine:$PASS" | chpasswd
 
+chmod +x /github-keys.sh
+
 if [ -z "${IMPORT_GITHUB_PUB_KEYS+xxx}" ] || [ -z "${IMPORT_GITHUB_PUB_KEYS}" ]; then
 	echo "WARNING: env variable \$IMPORT_GITHUB_PUB_KEYS is not set. Please set it to have access to this container via SSH."
 else
